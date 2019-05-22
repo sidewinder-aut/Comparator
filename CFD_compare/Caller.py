@@ -1,5 +1,6 @@
 #!/usr/bin/python
-import Comparator 
+import Comparator as CO
 
 
+C1 = CO.Comparison()
 
