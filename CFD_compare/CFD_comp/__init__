@@ -1,4 +1,0 @@
-import Comparator
-
-from Reporter import *
-from Comparison import *
