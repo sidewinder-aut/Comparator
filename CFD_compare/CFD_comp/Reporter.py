@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import Comparator
-CO = Comparator
+import CFD_comp
 
 class Reporter():
 

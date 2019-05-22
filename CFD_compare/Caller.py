@@ -1,6 +1,5 @@
 #!/usr/bin/python
-import Comparator as CO
+import CFD_comp
+CO = CFD_comp
 
-
-C1 = CO.Comparison()
-
+C1 = CO.ASDF("Horst")
