@@ -2,4 +2,6 @@
 import CFD_comp
 CO = CFD_comp
 
-C1 = CO.ASDF("Horst")
+
+C2 = CO.Comp("Horst")
+C2.fire = CO.FIRE(C2,"Horst")
