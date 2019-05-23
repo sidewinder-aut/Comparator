@@ -24,4 +24,3 @@ class FIRE(CO.Reporter):
              
         # Import FIRE Table data using pandas
         test = pd.read_csv(results_folderpath + "/fl2_results.txt", sep='\t')
-        print(test.values)
