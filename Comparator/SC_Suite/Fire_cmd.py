@@ -10,7 +10,7 @@ class Fire_cmd(SC.Reporter):
        
         #Initialisation of needed parameters to build the commandline for FIRE simulation
         self.name = "Fire run command"
-        self.cmd = ['fire_cmd']
+        self.cmd = ["fire_cmd"]
         self.parent = parent
         self.solver = solver_vers
         self.cpu_count = CPU_count
@@ -21,16 +21,14 @@ class Fire_cmd(SC.Reporter):
         self.report("{a} initialised".format(a=self.name))
         
         
-        
         # Building commandline for start of FIRE simulation
         self.cmd.append(" -project_dir="+self.project_dir)
         self.cmd.append(" -solver_vers="+self.solver)
-        self.cmd.append(" -project= "+self.fpr_file)
+        self.cmd.append(" -project="+self.fpr_file)
         self.cmd.append(" -case=" + self.case_name)
         self.cmd.append(" -mpi")
         self.cmd.append(" -cpu=" + str(self.cpu_count))
+        self.cmd.append(" -merge_initial_ssc")
         
-        
-        
-        #self.report("Commandline: {a}".format(a="".join(self.cmd)))
+
         

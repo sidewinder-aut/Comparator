@@ -70,7 +70,7 @@ class Reporter():
         
         import sys
         
-        self.report("Aborting CFD_compare", err = True)
+        self.report("Aborting SC_Suite", err = True)
         sys.exit()
     
     #

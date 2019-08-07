@@ -16,6 +16,47 @@ class Fire(SC.Reporter):
         # Getting attributes from parent
         self.proj_dir = parent.proj_dir
              
+    def overwrite_ssc(self, ssc_key, value, table = False, add = False):
+        
+       ssc_file_path =  self.proj_dir + "/Calculation/" + self.name +"/" + self.name + ".ssc"
+       
+       if not os.path.isfile(ssc_file_path):
+           a = open(ssc_file_path, 'w+')
+           a.close()
+          
+        
+       if table:
+           pref = 'set-table'
+       elif add:
+           pref = 'add'
+       else:
+           pref = 'set-const'
+        
+       a = open(ssc_file_path, 'r')
+       lines_in = a.readlines()
+       a.close()
+       
+       lines_out = []
+       
+       Found = False
+       
+       for line in lines_in:
+           if line.find(ssc_key) != -1:
+               lines_out.append('{p} {a} {b}\n'.format(a = ssc_key, b = value, p = pref))
+               Found = True
+           else:
+               lines_out.append(line)
+               
+       if not Found:
+           lines_out.append('{p} {a} {b}\n'.format(a = ssc_key, b = value, p = pref))
+                
+       a = open(ssc_file_path, 'a')
+        
+       for line in lines_out:
+           a.write(line)
+            
+       a.close()       
+    
     def run_case(self, num_procs):
         import os,time
         #Checking relevant files and folders for the simulation to run
@@ -29,12 +70,9 @@ class Fire(SC.Reporter):
         self.report("---------- Assembling commandline ----------", err = False)
         self.command = SC.Fire_cmd(self, "fire", num_procs, self.proj_dir, self.fpr_file, self.name)
         self.report("---------- Assembling commandline finished ----------\n", err = False)
-        
+                       
         self.report("---------- Starting Fire Simulation at {a} ----------".format(a= time.strftime('%d. %B %Y %H:%M')))
-        os.system("".join(self.command.cmd))
-         #ommandline = "fire_cmd -no_exe -fire -" + os.getcwd()
-         #self.report("Current commandline: {a}".format(a = commandline))
-         
+        os.system("".join(self.command.cmd))        
          
     def check_fire_project(self):
               

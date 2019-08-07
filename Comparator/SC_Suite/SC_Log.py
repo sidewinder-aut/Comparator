@@ -18,8 +18,5 @@ class SC_Log():
 		self.log.write(message)
 		self.log.flush()
 		self.terminal.flush()
-		
-#	def flush(self):
-		
-		
+				
 sys.stdout = SC_Log()
